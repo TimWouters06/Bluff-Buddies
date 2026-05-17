@@ -24,7 +24,13 @@ app.prepare().then(() => {
         }
     });
 
-    const io = new Server(server);
+    const io = new Server(server, {
+        cors: {
+            origin: "*", // Allow all origins (Vercel) to connect to this server
+            methods: ["GET", "POST"]
+        }
+    });
+
 
     io.on('connection', (socket) => {
         console.log('A user connected:', socket.id);
